@@ -40,7 +40,7 @@ namespace Practica_05
                 genero = "No Binario";
             }
 
-            string datos = $"Nombres: {nombres}\r\nApellidos: {apellidos}\r\nTeléfono: {telefono}\r\nEstatura: {estatura} cm\r\nEdad: {edad} años\r\nGénero: {genero}";
+            string datos = $"Nombres: {nombres}\r\nApellidos: {apellidos}\r\nTeléfono: {telefono}\r\nEstatura: {estatura} cm\r\nEdad: {edad} años\r\nGénero: {genero}\n";
 
             string rutaArchivos = "C:/Users/Asus/Documents/datos.txt";
 
