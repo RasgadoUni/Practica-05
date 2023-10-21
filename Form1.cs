@@ -4,19 +4,50 @@ using System.IO;using System.Linq;using System.Text;using System.Threading.Tasks
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing.Text;
+using MySql.Data.MySqlClient;
+
 
 namespace Practica_05
 {
     public partial class Form1 : Form
     {
+        //Conexion a MySQL (XAMPP)
+        string conexionSQL = "Server=localhost;Port=3306;Database=programacionavanzada;Uid=root;Pwd=;";
         public Form1()
         {
             InitializeComponent();
+
+            //Agregar controladores de eventos
             txt_age.TextChanged += ValidarEdad;
             txt_high.TextChanged += ValidarEstatura;
             txt_num.TextChanged += ValidarTelefono;
             txt_name.TextChanged += ValidarNombre;
             txt_lastname.TextChanged += ValidarApellido;
+
+            rBtn_fem.Checked = false;
+            rBtn_masc.Checked = false;
+        }
+        private void InsertarRegistro(string nombre, string apellidos, int edad, decimal estatura, string telefono, string genero)
+        {
+            using (MySqlConnection conection = new MySqlConnection(conexionSQL))
+            {
+                conection.Open();
+
+                string insertQuery = "INSERT INTO registros (Nombre, Apellidos, Edad, Estatura, Telefono, Genero)" + "VALUES (@Nombre, @Apellidos, @Edad, @Estatura, @Telefono, @Genero)";
+
+                using (MySqlCommand command = new MySqlCommand(insertQuery, conection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", nombre);
+                    command.Parameters.AddWithValue("@Apellidos", apellidos);
+                    command.Parameters.AddWithValue("@Edad", edad);
+                    command.Parameters.AddWithValue("@Estatura", estatura);
+                    command.Parameters.AddWithValue("@Telefono", telefono);
+                    command.Parameters.AddWithValue("@Genero", genero);
+
+                    command.ExecuteNonQuery();
+                }
+                conection.Close();
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -63,6 +94,9 @@ namespace Practica_05
                         {
                             //Si el archivo ya existe, añadir un separados antes del nuevo registro
                             writer.WriteLine();
+
+                            InsertarRegistro(nombres, apellidos, int.Parse(edad), decimal.Parse(estatura), telefono, genero);
+                            MessageBox.Show("Datos ingresados correctamente");
                         }
 
                         writer.WriteLine(datos);
@@ -128,10 +162,10 @@ namespace Practica_05
                     textBox.Clear();
                 }
             }
-            else if (!EsEnteroValidoDe10Digitos(input))
+            /*else if (!EsEnteroValidoDe10Digitos(input))
             {
                 MessageBox.Show("Por favor ingrese un numero de telefono valido de 10 digitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
         private void ValidarNombre(object sender, EventArgs e)
         {
@@ -147,7 +181,7 @@ namespace Practica_05
             TextBox textBox = (TextBox)sender;
             if (!EsTextoValido(textBox.Text))
             {
-                MessageBox.Show("Por favor ingrese una apellido valido (Solo letras y espacios).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Por favor ingrese una nombre valido (Solo letras y espacios).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox.Clear();
             }
         }

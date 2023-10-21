@@ -34,6 +34,7 @@
             this.lbl_high = new System.Windows.Forms.Label();
             this.lbl_age = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rBtn_bi = new System.Windows.Forms.RadioButton();
             this.rBtn_fem = new System.Windows.Forms.RadioButton();
             this.rBtn_masc = new System.Windows.Forms.RadioButton();
             this.txt_name = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.txt_age = new System.Windows.Forms.TextBox();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_can = new System.Windows.Forms.Button();
-            this.rBtn_bi = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +105,17 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Género";
+            // 
+            // rBtn_bi
+            // 
+            this.rBtn_bi.AutoSize = true;
+            this.rBtn_bi.Location = new System.Drawing.Point(133, 19);
+            this.rBtn_bi.Name = "rBtn_bi";
+            this.rBtn_bi.Size = new System.Drawing.Size(74, 17);
+            this.rBtn_bi.TabIndex = 2;
+            this.rBtn_bi.TabStop = true;
+            this.rBtn_bi.Text = "No Binario";
+            this.rBtn_bi.UseVisualStyleBackColor = true;
             // 
             // rBtn_fem
             // 
@@ -183,22 +194,11 @@
             this.btn_can.UseVisualStyleBackColor = true;
             this.btn_can.Click += new System.EventHandler(this.btn_can_Click);
             // 
-            // rBtn_bi
-            // 
-            this.rBtn_bi.AutoSize = true;
-            this.rBtn_bi.Location = new System.Drawing.Point(133, 19);
-            this.rBtn_bi.Name = "rBtn_bi";
-            this.rBtn_bi.Size = new System.Drawing.Size(74, 17);
-            this.rBtn_bi.TabIndex = 2;
-            this.rBtn_bi.TabStop = true;
-            this.rBtn_bi.Text = "No Binario";
-            this.rBtn_bi.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 421);
+            this.ClientSize = new System.Drawing.Size(291, 427);
             this.Controls.Add(this.btn_can);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.txt_age);
